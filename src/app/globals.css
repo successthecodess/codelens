@@ -1,27 +1,139 @@
+/* src/app/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Light theme */
+  --bg-primary: #f5f5f0;
+  --bg-secondary: #eaeae5;
+  --bg-tertiary: #dfdfd9;
+  --bg-code: #1e1e2e;
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #7a7a7a;
+  --border-color: #d0d0c8;
+  --border-subtle: #e0e0d8;
+  --accent: #0d9373;
+  --accent-hover: #0b7d62;
+  --accent-glow: rgba(13, 147, 115, 0.15);
+  --danger: #dc3545;
+  --warning: #e8a100;
+  --info: #2d7ff9;
+  --card-bg: #ffffff;
+  --card-border: #e0e0d8;
+  --score-ring-bg: #e0e0d8;
+  --header-bg: rgba(245, 245, 240, 0.85);
+  --overlay: rgba(0, 0, 0, 0.4);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+[data-theme="dark"] {
+  --bg-primary: #0c0c0f;
+  --bg-secondary: #141418;
+  --bg-tertiary: #1c1c22;
+  --bg-code: #0c0c0f;
+  --text-primary: #e8e8e2;
+  --text-secondary: #a0a09a;
+  --text-muted: #5a5a56;
+  --border-color: #2a2a30;
+  --border-subtle: #1e1e24;
+  --accent: #34d399;
+  --accent-hover: #6ee7b7;
+  --accent-glow: rgba(52, 211, 153, 0.1);
+  --danger: #f87171;
+  --warning: #fbbf24;
+  --info: #60a5fa;
+  --card-bg: #141418;
+  --card-border: #2a2a30;
+  --score-ring-bg: #2a2a30;
+  --header-bg: rgba(12, 12, 15, 0.85);
+  --overlay: rgba(0, 0, 0, 0.7);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Outfit', system-ui, sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Score ring animation */
+@keyframes score-fill {
+  from { stroke-dashoffset: 283; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-border {
+  0%, 100% { border-color: var(--accent); }
+  50% { border-color: transparent; }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.4s ease-out forwards;
+}
+
+/* Staggered children animation */
+.stagger-children > * {
+  opacity: 0;
+  animation: fade-up 0.35s ease-out forwards;
+}
+.stagger-children > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger-children > *:nth-child(8) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(9) { animation-delay: 0.45s; }
+.stagger-children > *:nth-child(10) { animation-delay: 0.5s; }
+
+/* Drag active state */
+.drag-active {
+  animation: pulse-border 1s ease-in-out infinite;
+}
+
+/* Prism overrides for our theme */
+pre[class*="language-"],
+code[class*="language-"] {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 768px) {
+  textarea, input, select, button {
+    font-size: 16px; /* Prevents iOS zoom on focus */
   }
 }
