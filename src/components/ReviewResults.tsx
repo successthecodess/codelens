@@ -1,7 +1,6 @@
-// src/components/ReviewResults.tsx
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback } from "react";
 import CopyButton from "./CopyButton";
 
 interface ReviewIssue {
@@ -325,7 +324,7 @@ async function generatePdf(data: ReviewData) {
 
     for (let i = 0; i < data.issues.length; i++) {
       const issue = data.issues[i];
-      const config = TYPE_CONFIG[issue.type];
+     
 
       checkPageBreak(40);
 

@@ -190,7 +190,7 @@ export async function reviewCode(
       cleaned = cleaned.replace(/^```(?:json)?\s*/i, "").replace(/\s*```\s*$/i, "");
     }
     parsed = JSON.parse(cleaned);
-  } catch (e) {
+  } catch {
     console.error("[ai-reviewer] Failed to parse response:", textBlock.text.substring(0, 200));
     throw new Error("Failed to parse AI response as JSON");
   }
