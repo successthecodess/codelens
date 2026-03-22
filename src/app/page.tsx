@@ -274,10 +274,10 @@ export default function Home() {
       <footer className="border-t py-4 mt-auto" style={{ borderColor: "var(--border-subtle)" }}>
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            CodeLens -- AI-powered code review
+            CodeLens
           </p>
           <p className="text-xs" style={{ color: "var(--text-muted)" }}>
-            Powered by Claude
+            
           </p>
         </div>
       </footer>

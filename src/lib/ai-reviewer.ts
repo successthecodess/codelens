@@ -152,9 +152,7 @@ YOUR APPROACH FOR ADVANCED DEVELOPERS:
 7. SUMMARY: Be direct and specific. Example: "This implementation has a SQL injection vulnerability in the query builder and an O(n^2) sorting loop that will degrade at scale. The core logic is sound but needs hardening before production use."`;
 }
 
-/**
- * Sends code to Claude for review and parses the structured response.
- */
+
 export async function reviewCode(
   code: string,
   language: SupportedLanguage,
